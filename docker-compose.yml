@@ -1,0 +1,12 @@
+services:
+  producer-service:
+    image: producer-service:latest
+    build: .
+    ports:
+      - "8081:8081"
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
