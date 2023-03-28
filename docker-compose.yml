@@ -1,6 +1,7 @@
 services:
-  producer-service:
+  producer:
     image: producer-service:latest
+    container_name: kafka_producer
     build: .
     ports:
       - "8081:8081"
@@ -10,3 +11,9 @@ services:
         delay: 5s
         max_attempts: 3
         window: 120s
+    networks:
+      - kafkaservice_kafka_web
+
+networks:
+  kafkaservice_kafka_web:
+    external: true

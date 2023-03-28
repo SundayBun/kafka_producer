@@ -1,7 +1,11 @@
+FROM gradle:7-jdk17 as builder
+COPY --chown=gradle:gradle . /home/gradle/src
+WORKDIR /home/gradle/src
+RUN --mount=type=cache,target=./.gradle gradle buildFatJar --no-daemon
 
-FROM openjdk:17-jdk-slim as build
+FROM openjdk:17-jdk-slim as runner
 EXPOSE 8087:8087
 RUN mkdir /app
-ARG JAR_FFILE=build/libs/service_fat.jar
-COPY ${JAR_FFILE} /app/ktor-docker-service.jar
-ENTRYPOINT ["java","-jar","/app/ktor-docker-service.jar"]
+
+COPY --from=builder /home/gradle/src/build/libs/*.jar /app/ktor-docker-sample.jar
+ENTRYPOINT ["java","-jar","/app/ktor-docker-sample.jar"]

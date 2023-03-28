@@ -17,8 +17,7 @@ class AppController(private val kafkaProducer: KafkaProducer, @Value("\${topic.p
 
     @PostMapping("/sendMessage")
     fun sendMessage(@RequestBody body: RespModel): ResponseEntity<String>? {
-        val message = getString(body)
-        kafkaProducer.producerPublisher(message, topic).subscribe()
+        kafkaProducer.producerPublisher(body, topic).subscribe()
         return ResponseEntity(HttpStatus.OK)
     }
 }
