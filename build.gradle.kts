@@ -55,6 +55,11 @@ dependencies {
     testImplementation("org.springframework.restdocs:spring-restdocs-mockmvc")
     // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-validation
     implementation("org.springframework.boot:spring-boot-starter-validation:3.0.1")
+    // https://mvnrepository.com/artifact/io.micrometer/micrometer-registry-prometheus
+    implementation("io.micrometer:micrometer-registry-prometheus:1.10.5")
+// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-actuator
+    implementation("org.springframework.boot:spring-boot-starter-actuator:3.0.5")
+
     // https://mvnrepository.com/artifact/io.projectreactor.kafka/reactor-kafka
     implementation("io.projectreactor.kafka:reactor-kafka:1.3.15")
     // https://mvnrepository.com/artifact/org.slf4j/slf4j-api
